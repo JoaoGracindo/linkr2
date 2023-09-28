@@ -4,6 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### database config ###
+src/main/resources/config/*
+!src/main/resources/config/*.example
+
 ### STS ###
 .apt_generated
 .classpath
