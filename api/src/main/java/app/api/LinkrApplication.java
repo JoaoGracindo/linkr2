@@ -9,7 +9,7 @@ public class LinkrApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LinkrApplication.class, args);
 		System.out.println("Server is on...");
-
+		
 	}
 
 }
