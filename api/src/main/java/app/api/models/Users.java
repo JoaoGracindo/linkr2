@@ -9,13 +9,18 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import java.time.OffsetDateTime;
 import java.util.Set;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Users {
 
     @Id
