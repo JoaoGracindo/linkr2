@@ -8,8 +8,8 @@ public class LinkrApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LinkrApplication.class, args);
-		System.out.println("Server is on...");
-		
+		System.out.println("Server is running on port 8080...");
+
 	}
 
 }
