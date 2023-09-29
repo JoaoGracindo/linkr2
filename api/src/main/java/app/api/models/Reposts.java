@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+
 import java.time.OffsetDateTime;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +19,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Entity
+@Entity(name = "reposts")
+@Table(name = "reposts")
 @Getter
 @Setter
 @AllArgsConstructor
