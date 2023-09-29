@@ -77,6 +77,12 @@ public class Users implements UserDetails {
         @OneToMany(mappedBy = "user")
         private Set<Follows> userFollowses;
 
+        public Users(String name, String password, String email){
+                this.name = name;
+                this.password = password;
+                this.email = email;
+        }
+
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
                 return List.of(new SimpleGrantedAuthority("user"));
