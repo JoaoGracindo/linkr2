@@ -6,40 +6,36 @@
     </div>
   </div>
   <div class="signUpContainer">
-    <form onSubmit="{signUp}">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <input
         placeholder="e-mail"
         type="text"
         required
-        disabled="{loading}"
-        value="{email}"
+        formControlName="email"
       />
 
       <input
         placeholder="password"
         type="password"
         required
-        disabled="{loading}"
-        value="{password}"
+        formControlName="password"
       />
 
       <input
         placeholder="username"
         type="text"
         required
-        disabled="{loading}"
-        value="{username}"
+        formControlName="username"
       />
 
       <input
         placeholder="picture url"
         type="text"
         required
-        disabled="{loading}"
-        value="{pic_url}"
+        formControlName="picUrl"
       />
 
-      <button type="submit" disabled="{loading}">Sign Up</button>
+      <button type="submit">Sign Up</button>
     </form>
     <a href="/">Switch back to log in</a>
   </div>
