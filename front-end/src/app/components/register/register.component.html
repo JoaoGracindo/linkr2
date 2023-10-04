@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="title">
+    <div>
+      <h1>linkr</h1>
+      <h2>save, share and discover the best links on the web</h2>
+    </div>
+  </div>
+  <div class="signUpContainer">
+    <form onSubmit="{signUp}">
+      <input
+        placeholder="e-mail"
+        type="text"
+        required
+        disabled="{loading}"
+        value="{email}"
+      />
+
+      <input
+        placeholder="password"
+        type="password"
+        required
+        disabled="{loading}"
+        value="{password}"
+      />
+
+      <input
+        placeholder="username"
+        type="text"
+        required
+        disabled="{loading}"
+        value="{username}"
+      />
+
+      <input
+        placeholder="picture url"
+        type="text"
+        required
+        disabled="{loading}"
+        value="{pic_url}"
+      />
+
+      <button type="submit" disabled="{loading}">Sign Up</button>
+    </form>
+    <a href="/">Switch back to log in</a>
+  </div>
+</div>
