@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div class="container">
+    <div class="title">
+      <div>
+        <h1>linkr</h1>
+        <h2>save, share and discover the best links on the web</h2>
+      </div>
+    </div>
+    <div class="signUpSpace">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input placeholder="e-mail" type="text" required formControlName="email" />
+  
+        <input
+          placeholder="password"
+          type="password"
+          required
+          formControlName="password"
+        />
+  
+        <button type="submit">Sign In</button>
+      </form>
+      <a routerLink="/signup">First time? Create an account!</a>
+    </div>
+  </div>

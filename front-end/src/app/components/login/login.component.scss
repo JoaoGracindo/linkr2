@@ -1,0 +1,150 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+        width: 429px;
+        height: 65px;
+        border: none;
+        border-radius: 6px;
+        margin: 7px 0px 6px 0px;
+        padding: 0px 17px;
+        box-sizing: border-box;
+        color: #9F9F9F;
+        font-weight: 700;
+        font-size: 27px;
+        line-height: 40px;
+
+        &:disabled {
+            background-color: #fafafa;
+        }
+    }
+
+    button {
+        width: 429px;
+        height: 65px;
+        border-radius: 6px;
+        color: white;
+        border: none;
+        margin: 7px 0px 6px 0px;
+        background-color: #1877F2;
+        font-weight: 700;
+        font-size: 27px;
+        line-height: 40px;
+
+        &:disabled {
+            background-color: #224471;
+        }
+    }
+
+    @media(max-width: 1121px) {
+
+        input,
+        button {
+            width: 330px;
+        }
+    }
+}
+
+.signUpSpace {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 535px;
+    height: 100vh;
+    min-height: 500px;
+    background-color: #333;
+    font-family: 'Oswald', sans-serif;
+    padding: 54px;
+    box-sizing: border-box;
+
+    a {
+        font-family: 'Lato', sans-serif;
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+        line-height: 24px;
+        margin-top: 8px;
+    }
+
+
+    @media(max-width: 1121px) {
+        width: 100%;
+    }
+
+}
+
+.container {
+    display: flex;
+
+    @media(max-width: 1121px) {
+        flex-direction: column;
+    }
+}
+
+.title {
+    background-color: #151515;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+
+    div {
+        width: 442px;
+        margin-left: 144px;
+
+    }
+
+    h1 {
+        font-family: 'Passion One';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 106px;
+        line-height: 117px;
+        letter-spacing: 0.05em;
+        color: #FFFFFF;
+    }
+
+    h2 {
+        font-family: 'Oswald', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 43px;
+        line-height: 64px;
+
+        color: #FFFFFF;
+
+
+    }
+
+    @media(max-width: 1121px) {
+
+        display: flex;
+        justify-content: center;
+        height: 175px;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 0px;
+            width: 237px;
+
+
+            h1 {
+                font-size: 72px;
+                line-height: 84px;
+            }
+
+            h2 {
+                font-size: 23px;
+                line-height: 34px;
+            }
+        }
+    }
+}
