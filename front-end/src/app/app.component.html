@@ -6,14 +6,14 @@
     </div>
   </div>
   <div class="signUpSpace">
-    <form onSubmit="{signIn}">
-      <input placeholder="e-mail" type="text" required value="{email}" />
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input placeholder="e-mail" type="text" required formControlName="email" />
 
       <input
         placeholder="password"
         type="password"
         required
-        value="{password}"
+        formControlName="password"
       />
 
       <button type="submit">Sign In</button>
