@@ -7,13 +7,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.jpa.repository.Temporal;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,10 +53,11 @@ public class Users implements UserDetails {
         private String password;
 
         @Column(nullable = false)
-        private Boolean deleted;
+        private Boolean deleted = false;
 
-        @Column(nullable = false)
-        private OffsetDateTime createdAt;
+        @CreationTimestamp
+        @Column(name = "created_at")
+        private Date createdAt = new Date();
 
         @OneToMany(mappedBy = "owner")
         private Set<Posts> ownerPostses;
@@ -74,10 +80,11 @@ public class Users implements UserDetails {
         @OneToMany(mappedBy = "user")
         private Set<Follows> userFollows;
 
-        public Users(String name, String password, String email) {
+        public Users(String name, String password, String email, String picUrl) {
                 this.name = name;
                 this.password = password;
                 this.email = email;
+                this.picUrl = picUrl;
         }
 
         @Override
