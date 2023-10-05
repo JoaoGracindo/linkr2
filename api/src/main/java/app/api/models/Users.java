@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
@@ -24,7 +23,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "users")
+@Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @Getter
 @Setter
@@ -33,10 +32,8 @@ import lombok.Setter;
 public class Users implements UserDetails {
 
         @Id
-        @Column(nullable = false, updatable = false)
-        @SequenceGenerator(name = "primary_sequence", sequenceName = "primary_sequence", allocationSize = 1, initialValue = 10000)
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "primary_sequence")
-        private Integer id;
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private long id;
 
         @Column(nullable = false, length = 50)
         private String name;
@@ -60,24 +57,24 @@ public class Users implements UserDetails {
         private Set<Posts> ownerPostses;
 
         @OneToMany(mappedBy = "user")
-        private Set<Likes> userLikeses;
+        private Set<Likes> userLikes;
 
         @OneToMany(mappedBy = "user")
-        private Set<Reposts> userRepostses;
+        private Set<Reposts> userReposts;
 
         @OneToMany(mappedBy = "repostedBy")
-        private Set<Posts> repostedByPostses;
+        private Set<Posts> repostedByPosts;
 
         @OneToMany(mappedBy = "user")
-        private Set<Comments> userCommentses;
+        private Set<Comments> userComments;
 
         @OneToMany(mappedBy = "follower")
-        private Set<Follows> followerFollowses;
+        private Set<Follows> followerFollows;
 
         @OneToMany(mappedBy = "user")
-        private Set<Follows> userFollowses;
+        private Set<Follows> userFollows;
 
-        public Users(String name, String password, String email){
+        public Users(String name, String password, String email) {
                 this.name = name;
                 this.password = password;
                 this.email = email;

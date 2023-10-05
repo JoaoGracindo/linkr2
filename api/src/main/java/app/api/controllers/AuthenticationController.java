@@ -36,6 +36,7 @@ public class AuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity signup(@Validated @RequestBody SignupDTO data){
+        System.out.println(data.toString());
         if(this.usersRepository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());

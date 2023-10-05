@@ -12,7 +12,7 @@ export class LoginComponent {
     password: new FormControl(''),
   });
 
-  onSubmit() {
+  submit() {
     console.log(this.form.value);
   }
 }

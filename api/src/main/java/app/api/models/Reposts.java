@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 import java.time.OffsetDateTime;
@@ -19,7 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Entity(name = "reposts")
+@Entity
 @Table(name = "reposts")
 @Getter
 @Setter
@@ -28,18 +27,8 @@ import lombok.Setter;
 public class Reposts {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @SequenceGenerator(
-            name = "primary_sequence",
-            sequenceName = "primary_sequence",
-            allocationSize = 1,
-            initialValue = 10000
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "primary_sequence"
-    )
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column(nullable = false)
     private OffsetDateTime createdAt;

@@ -12,25 +12,28 @@ import { StorageService } from './storage.service';
 })
 export class ConfigService {
 
-  private uri = env.API_URL;
+  private uri = env.API_URL + '/auth';
   private storage = new StorageService();
 
   constructor(private httpClient: HttpClient) { }
 
-  login(payload: loginDTO): void {
+  login(payload: loginDTO): Observable<loginDTO> {
     const url = this.uri + '/login';
-    const token = this.httpClient.post(url, payload);
-
+    const token = this.httpClient.post<loginDTO>(url, payload);
     this.storage.setToken(JSON.stringify(token));
+    return token;
   }
 
-  signUp(payload: signUpDTO): void {
+  signUp(payload: signUpDTO): Observable<signUpDTO> {
     const url = this.uri + '/signup';
-    this.httpClient.post(url, payload);
+    console.log(url);
+    const response = this.httpClient.post<signUpDTO>(url, payload);
 
     this.login({
       email: payload.email,
       password: payload.password
     });
+
+    return response;
   }
 }

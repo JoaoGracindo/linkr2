@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 import java.util.Set;
@@ -17,7 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Entity(name = "tags")
+@Entity
 @Table(name = "tags")
 @Getter
 @Setter
@@ -26,18 +25,8 @@ import lombok.Setter;
 public class Tags {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @SequenceGenerator(
-            name = "primary_sequence",
-            sequenceName = "primary_sequence",
-            allocationSize = 1,
-            initialValue = 10000
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "primary_sequence"
-    )
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column(nullable = false, length = 60)
     private String name;
@@ -46,6 +35,6 @@ public class Tags {
     private Integer mentions;
 
     @OneToMany(mappedBy = "tag")
-    private Set<TagsPivot> tagTagsPivots;
+    private Set<TagsPivot> tagsPivots;
 
 }

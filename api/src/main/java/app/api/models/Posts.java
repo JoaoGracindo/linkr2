@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 import java.time.OffsetDateTime;
@@ -21,7 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Entity(name = "posts")
+@Entity
 @Table(name = "posts")
 @Getter
 @Setter
@@ -30,18 +29,8 @@ import lombok.Setter;
 public class Posts {
 
     @Id
-    @Column(nullable = false, updatable = false)
-    @SequenceGenerator(
-            name = "primary_sequence",
-            sequenceName = "primary_sequence",
-            allocationSize = 1,
-            initialValue = 10000
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "primary_sequence"
-    )
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column(nullable = false, columnDefinition = "text")
     private String link;
@@ -63,10 +52,10 @@ public class Posts {
     private Set<TagsPivot> postTagsPivots;
 
     @OneToMany(mappedBy = "post")
-    private Set<Likes> postLikeses;
+    private Set<Likes> postLikes;
 
     @OneToMany(mappedBy = "post")
-    private Set<Reposts> postRepostses;
+    private Set<Reposts> postReposts;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reposted_by_id")
@@ -77,9 +66,9 @@ public class Posts {
     private Posts originPost;
 
     @OneToMany(mappedBy = "originPost")
-    private Set<Posts> originPostPostses;
+    private Set<Posts> originPostPosts;
 
     @OneToMany(mappedBy = "post")
-    private Set<Comments> postCommentses;
+    private Set<Comments> postComments;
 
 }

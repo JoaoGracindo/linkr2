@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="signUpSpace">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form">
         <input placeholder="e-mail" type="text" required formControlName="email" />
   
         <input
@@ -16,7 +16,7 @@
           formControlName="password"
         />
   
-        <button type="submit">Sign In</button>
+        <button type="submit" (click)="submit()">Sign In</button>
       </form>
       <a routerLink="/signup">First time? Create an account!</a>
     </div>
