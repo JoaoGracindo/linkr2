@@ -30,18 +30,12 @@ public class AuthenticationController {
     @Autowired
     private UsersRepository usersRepository;
 
-    @Value("${app.jwt.key}")
-    private String key;
-
     @PostMapping("/login")
     public ResponseEntity login(@Validated @RequestBody AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = (Users) authenticationManager.authenticate(usernamePassword).getPrincipal();
 
         try {
-            String token = JWT.create()
-                    .withSubject(auth.getUsername())
-                    .sign(Algorithm.HMAC512(key));
             return ResponseEntity.ok(token);
 
         } catch (Exception e) {
