@@ -17,6 +17,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 import app.api.DTOs.AuthenticationDTO;
 import app.api.DTOs.SignupDTO;
+import app.api.infra.TokenService;
 import app.api.models.Users;
 import app.api.repositories.UsersRepository;
 
@@ -30,17 +31,15 @@ public class AuthenticationController {
     @Autowired
     private UsersRepository usersRepository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login(@Validated @RequestBody AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = (Users) authenticationManager.authenticate(usernamePassword).getPrincipal();
-
-        try {
-            return ResponseEntity.ok(token);
-
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
-        }
+        String token = tokenService.generateToken(auth);
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/signup")
