@@ -23,7 +23,7 @@ import app.api.repositories.UsersRepository;
 @RestController
 @RequestMapping("auth")
 public class AuthenticationController {
-    
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -34,18 +34,25 @@ public class AuthenticationController {
     private String key;
 
     @PostMapping("/login")
-    public ResponseEntity login(@Validated @RequestBody AuthenticationDTO data){
+    public ResponseEntity login(@Validated @RequestBody AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = (Users) authenticationManager.authenticate(usernamePassword).getPrincipal();
-        String token = JWT.create()
-            .withSubject(auth.getUsername())
-            .sign(Algorithm.HMAC512(key));
-        return ResponseEntity.ok(token);
+
+        try {
+            String token = JWT.create()
+                    .withSubject(auth.getUsername())
+                    .sign(Algorithm.HMAC512(key));
+            return ResponseEntity.ok(token);
+
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @PostMapping("/signup")
-    public ResponseEntity signup(@Validated @RequestBody SignupDTO data){
-        if(this.usersRepository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
+    public ResponseEntity signup(@Validated @RequestBody SignupDTO data) {
+        if (this.usersRepository.findByEmail(data.email()) != null)
+            return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         Users user = new Users(data.name(), encryptedPassword, data.email(), data.picUrl());
