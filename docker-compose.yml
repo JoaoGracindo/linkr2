@@ -1,0 +1,30 @@
+services:
+  api:
+    container_name: api
+    restart: always
+    ports:
+      - "8080:8080"
+    build: ./api
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+      - SPRING_DATASOURCE_USERNAME=compose-postgres
+      - SPRING_DATASOURCE_PASSWORD=compose-postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - APP.JWT.KEY=$2a$10$JGRM3Ktsxw9apQ2PfSQNF
+
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    container_name: db
+    environment:
+      - POSTGRES_USER=compose-postgres
+      - POSTGRES_PASSWORD=compose-postgres
+
+volumes:
+  postgres-data:
