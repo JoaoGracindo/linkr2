@@ -6,6 +6,9 @@ target/
 
 ### database config ###
 src/main/resources/application.properties
+src/test/resources/application.properties
+
+
 
 ### STS ###
 .apt_generated
