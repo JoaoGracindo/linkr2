@@ -12,19 +12,29 @@ services:
       - SPRING_DATASOURCE_USERNAME=compose-postgres
       - SPRING_DATASOURCE_PASSWORD=compose-postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - APP.JWT.KEY=$2a$10$JGRM3Ktsxw9apQ2PfSQNF
+      - APP.JWT.KEY=b5ef65e9-0f8b-4467-aff0-e99bb2d01982
 
   db:
+    container_name: db
     image: postgres
     restart: always
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
-    container_name: db
     environment:
       - POSTGRES_USER=compose-postgres
       - POSTGRES_PASSWORD=compose-postgres
+
+  angular:
+    container_name: angular
+    build: ./front-end
+    restart: always
+    ports:
+      - "8081:80"
+    depends_on:
+      - api
+    
 
 volumes:
   postgres-data:
