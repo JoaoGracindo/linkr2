@@ -26,7 +26,6 @@ export class ConfigService {
 
   signUp(payload: signUpDTO): Observable<signUpDTO> {
     const url = this.uri + '/signup';
-    console.log(url);
     const response = this.httpClient.post<signUpDTO>(url, payload);
 
     this.login({
