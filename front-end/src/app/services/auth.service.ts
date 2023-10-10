@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs'; 
 
-import { env } from 'src/environment/environment';
+import { environment } from 'src/environments/environment';
 import { loginDTO, signUpDTO } from 'src/protocols';
 import { StorageService } from './storage.service';
 
@@ -12,7 +12,7 @@ import { StorageService } from './storage.service';
 })
 export class ConfigService {
 
-  private uri = env.API_URL + '/auth';
+  private uri = environment.API_URL + '/auth';
   private storage = new StorageService();
 
   constructor(private httpClient: HttpClient) { }
