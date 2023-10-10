@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { ConfigService } from 'src/app/services/config.service';
+import { ConfigService } from 'src/app/services/auth.service';
 import { signUpDTO } from 'src/protocols';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
+  providers: [ConfigService]
 })
 export class RegisterComponent {
   form = new FormGroup({
