@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ConfigService } from 'src/app/services/auth.service';
+import { StorageService } from 'src/app/services/storage.service';
 import { loginDTO } from 'src/protocols';
 
 @Component({
@@ -10,7 +11,10 @@ import { loginDTO } from 'src/protocols';
   providers: [ConfigService]
 })
 export class LoginComponent {
-  constructor(private authService: ConfigService) {};
+  constructor(
+    private authService: ConfigService,
+    private storageService: StorageService
+  ) {};
 
   form = new FormGroup({
     email: new FormControl(''),
@@ -18,6 +22,7 @@ export class LoginComponent {
   });
 
   submit() {
-    this.authService.login(this.form.value as loginDTO);
+    this.authService.login(this.form.value as loginDTO)
+    .subscribe((token) => this.storageService.setToken(token));
   }
 }

@@ -17,11 +17,10 @@ export class ConfigService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(payload: loginDTO): Observable<loginDTO> {
+  login(payload: loginDTO): Observable<string> {
     const url = this.uri + '/login';
-    const token = this.httpClient.post<loginDTO>(url, payload);
-    this.storage.setToken(JSON.stringify(token));
-    return token;
+    return this.httpClient.post<string>(url, payload, {responseType: 'text' as 'json'});
+    // this.storage.setToken(JSON.stringify(token));
   }
 
   signUp(payload: signUpDTO): Observable<signUpDTO> {
