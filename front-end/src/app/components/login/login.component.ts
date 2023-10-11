@@ -26,5 +26,8 @@ export class LoginComponent {
   submit() {
     this.authService.login(this.form.value as loginDTO)
     .subscribe(token => localStorage.setItem('token', token));
+
+    //to-do: navigation to main page
+    this.router.navigate(['/']);
   }
 }
