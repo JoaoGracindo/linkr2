@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs'; 
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { loginDTO, signUpDTO } from 'src/protocols';
