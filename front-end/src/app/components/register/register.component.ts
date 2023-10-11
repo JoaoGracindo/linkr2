@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { ConfigService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { signUpDTO } from 'src/protocols';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers: [ConfigService]
+  providers: [AuthService]
 })
 export class RegisterComponent {
   form = new FormGroup({
@@ -18,7 +18,7 @@ export class RegisterComponent {
     picUrl: new FormControl(''),
   });
 
-  constructor(private api: ConfigService) {}
+  constructor(private api: AuthService) {}
 
   submit() {
     this.api.signUp(this.form.value as signUpDTO);

@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ConfigService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { loginDTO } from 'src/protocols';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [ConfigService]
+  providers: [AuthService]
 })
 export class LoginComponent {
   constructor(
-    private authService: ConfigService,
+    private authService: AuthService,
     private router: Router
   ) {
     localStorage.clear();

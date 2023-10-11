@@ -8,7 +8,7 @@ import { loginDTO, signUpDTO } from 'src/protocols';
 @Injectable({
   providedIn: 'root',
 })
-export class ConfigService {
+export class AuthService {
   private uri = environment.API_URL + '/auth';
 
   constructor(private httpClient: HttpClient) {}
