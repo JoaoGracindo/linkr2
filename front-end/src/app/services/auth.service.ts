@@ -6,17 +6,19 @@ import { environment } from 'src/environments/environment';
 import { loginDTO, signUpDTO } from 'src/protocols';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConfigService {
-
   private uri = environment.API_URL + '/auth';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   login(payload: loginDTO): Observable<string> {
     const url = this.uri + '/login';
-    return this.httpClient.post<string>(url, payload, {responseType: 'text' as 'json'});
+
+    return this.httpClient.post<string>(url, payload, {
+      responseType: 'text' as 'json',
+    });
   }
 
   signUp(payload: signUpDTO): Observable<signUpDTO> {
@@ -25,9 +27,13 @@ export class ConfigService {
 
     this.login({
       email: payload.email,
-      password: payload.password
+      password: payload.password,
     });
 
     return response;
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('token') !== null;
   }
 }
