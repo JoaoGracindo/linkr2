@@ -10,11 +10,16 @@
     <li>docker compose</li>
 </ul>
 
-## Install
+## Run
 
 ```sh
 docker compose up
 ```
+<br/>
+<p>
+    Application will run at: <br/>
+    <a>http://localhost:4200 </a>
+</p>
 
 ## Author
 
