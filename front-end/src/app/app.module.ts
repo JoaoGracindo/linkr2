@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register-page/register.component';
+import { LoginComponent } from './components/login-page/login.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({

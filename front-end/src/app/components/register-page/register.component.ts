@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { signUpDTO } from 'src/protocols';
@@ -18,7 +19,10 @@ export class RegisterComponent {
     picUrl: new FormControl(''),
   });
 
-  constructor(private api: AuthService) {}
+  constructor(
+    private api: AuthService,
+    private router: Router
+    ) {}
 
   submit() {
     const {email, password, name, picUrl} = this.form.value;
@@ -28,5 +32,7 @@ export class RegisterComponent {
     }
 
     this.api.signUp(this.form.value as signUpDTO).subscribe();
+
+    this.router.navigate(['/']);
   }
 }
