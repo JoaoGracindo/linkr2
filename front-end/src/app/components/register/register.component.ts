@@ -21,6 +21,12 @@ export class RegisterComponent {
   constructor(private api: AuthService) {}
 
   submit() {
+    const {email, password, name, picUrl} = this.form.value;
+    if(email === '' || password === '' || name === '' || picUrl ===''){
+      alert("complete os campos");
+      return;
+    }
+
     this.api.signUp(this.form.value as signUpDTO);
   }
 }
