@@ -23,12 +23,10 @@ export class AuthService {
 
   signUp(payload: signUpDTO): Observable<signUpDTO> {
     const url = this.uri + '/signup';
-    const response = this.httpClient.post<signUpDTO>(url, payload);
-
-    this.login({
-      email: payload.email,
-      password: payload.password,
+    const response = this.httpClient.post<signUpDTO>(url, payload, {
+      responseType: 'text' as 'json',
     });
+
 
     return response;
   }

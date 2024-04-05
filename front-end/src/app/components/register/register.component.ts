@@ -27,6 +27,6 @@ export class RegisterComponent {
       return;
     }
 
-    this.api.signUp(this.form.value as signUpDTO);
+    this.api.signUp(this.form.value as signUpDTO).subscribe();
   }
 }
